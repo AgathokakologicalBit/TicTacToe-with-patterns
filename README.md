@@ -6,6 +6,7 @@ Simple game implementation using common programming patters.
 
 * Builder - for creating board printers with custom settings
 * Decorator - printers extends boards functionality (adds ability to print them)
+* RAII - board manages dynamic memory for storing cells and frees it on destruction
 * ... - more will be implemented soon
 
 ## Do you have a good idea?

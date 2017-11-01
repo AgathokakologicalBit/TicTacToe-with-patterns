@@ -10,7 +10,7 @@
  */
 class BoardPrinterFactory {
 private:
-    BoardPrinter* printer;
+    BoardPrinter printer;
     bool is_built;
 
 public:
@@ -19,7 +19,7 @@ public:
      * @param board_ target board to print
      */
     explicit BoardPrinterFactory(const Board& board_)
-        : printer(new BoardPrinter(&board_))
+        : printer(&board_)
         , is_built(false)
     {}
 
@@ -33,7 +33,7 @@ public:
     BoardPrinterFactory& set_symbol(eCell cell, char symbol) {
         assert(!is_built);
 
-        printer->symbol_table[cell] = symbol;
+        printer.symbol_table[cell] = symbol;
         return *this;
     }
 
@@ -41,13 +41,11 @@ public:
      * Creates fully configured board printer
      * @return configured board printer
      */
-    BoardPrinter& build()
+    const BoardPrinter& build()
     {
         assert(!is_built);
 
         is_built = true;
-        auto& p = *printer;
-        printer = nullptr;
-        return p;
+        return printer;
     }
 };

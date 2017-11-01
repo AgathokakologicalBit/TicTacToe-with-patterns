@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <cstdint>
+#include <vector>
 
 #include "ecell.h"
 #include "ewinner.h"
@@ -22,7 +23,7 @@ public:
     int16_t const chain_length;
 
 private:
-    eCell * const data; // 1D board array
+    std::vector<eCell> data; // 1D board array
     eCell next_type;    // Next going player (or eCell::Empty if game is finished)
 
 public:
@@ -35,15 +36,14 @@ public:
     Board(int16_t size_, int16_t chain_length_)
         : size(static_cast<std::size_t>(size_))
         , chain_length(chain_length_)
-        , data(new eCell[size*size])
+        , data(size * size, eCell::Empty)
         , next_type(eCell::X)
     {
         assert(2 < chain_length && chain_length < 16);
         assert(size >= chain_length && size < 1024);
-
-        for (std::size_t i = 0; i < size*size; ++i)
-            data[i] = eCell::Empty;
     }
+
+    ~Board() = default;
 
     /**
      * Returns target cell's value
