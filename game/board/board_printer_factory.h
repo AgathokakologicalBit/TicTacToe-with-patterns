@@ -2,8 +2,11 @@
 
 #pragma once
 
+#include <memory>
+
 #include "board.h"
 #include "board_printer.h"
+
 
 /**
  * [Factory/Builder] for board printer.
@@ -12,7 +15,7 @@
  */
 class BoardPrinterFactory {
 private:
-    BoardPrinter printer;
+    std::unique_ptr<BoardPrinter> printer;
     bool is_built;
 
 public:
@@ -21,7 +24,7 @@ public:
      * @param board_ target board to print
      */
     explicit BoardPrinterFactory(const Board& board_)
-        : printer(&board_)
+        : printer(new BoardPrinter(&board_))
         , is_built(false)
     {}
 
@@ -35,7 +38,7 @@ public:
     BoardPrinterFactory& set_symbol(eCell cell, char symbol) {
         assert(!is_built);
 
-        printer.symbol_table[cell] = symbol;
+        printer->symbol_table[cell] = symbol;
         return *this;
     }
 
@@ -43,11 +46,13 @@ public:
      * Creates fully configured board printer
      * @return configured board printer
      */
-    const BoardPrinter& build()
+    BoardPrinter* build()
     {
         assert(!is_built);
 
         is_built = true;
-        return printer;
+        auto p = printer.get();
+        printer.release();
+        return p;
     }
 };

@@ -6,8 +6,8 @@
 #include <cstdint>
 #include <vector>
 
-#include "ecell.h"
-#include "ewinner.h"
+#include "../../ecell.h"
+#include "../../ewinner.h"
 
 
 /**
@@ -92,5 +92,5 @@ public:
      *   eWinner::T  - if game was finished with a tie
      * @return game state
      */
-    eWinner get_winner();
+    eWinner calculate_winner();
 };

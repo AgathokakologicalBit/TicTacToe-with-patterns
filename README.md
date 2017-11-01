@@ -4,9 +4,11 @@ Simple game implementation using common programming patters.
 
 ## Used design patterns
 
-* Builder - for creating board printers with custom settings
-* Decorator - printers extends boards functionality (adds ability to print them)
-* RAII - board manages dynamic memory for storing cells and frees it on destruction
+* Builder - for creating `Board` printers with custom settings
+* Decorator - `Printers` extends `Boards` functionality (adds ability to print them)
+* Interface - `IController` is an abstract class(prototype) which defines game player's turn strategy
+* RAII - `Board` manages dynamic memory for storing cells and frees it on destruction
+* Singleton - `Game` have a sole instance which runs TicTacToe
 * ... - more will be implemented soon
 
 ## Do you have a good idea?

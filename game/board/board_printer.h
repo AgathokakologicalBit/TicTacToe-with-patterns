@@ -17,16 +17,17 @@ class BoardPrinter {
 private:
     Board const * const board; // Reference to the board that should be decorated(made printable)
 
-    std::map<eCell, char> symbol_table; // Styles(Symbolic representation) for game cells
+    std::map<eCell, char> symbol_table; // Styles(Symbolic representation) of game cells
 
 public:
     explicit BoardPrinter(Board const * const board_)
         : board(board_)
-    {
-        symbol_table[eCell::Empty] = ' ';
-        symbol_table[eCell::X] = 'X';
-        symbol_table[eCell::O] = 'O';
-    }
+        , symbol_table({
+               {eCell::Empty, ' '},
+               {eCell::X, 'X'},
+               {eCell::O, 'O'}
+            })
+    { }
 
 public:
     /**

@@ -3,5 +3,17 @@ project(ttt)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(SOURCE_FILES main.cpp board.cpp board.h ecell.h ewinner.h board_printer.cpp board_printer.h board_printer_factory.h)
+set(SOURCE_FILES
+        main.cpp
+        game/board/board.cpp
+        game/board/board.h
+        ecell.h
+        ewinner.h
+        game/board/board_printer.cpp
+        game/board/board_printer.h
+        game/board/board_printer_factory.h
+        controllers/controller.h
+        game/move.h
+        game/game.cpp
+        game/game.h)
 add_executable(ttt ${SOURCE_FILES})

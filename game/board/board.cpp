@@ -25,7 +25,7 @@ bool Board::do_turn(int16_t x, int16_t y) {
     return true;
 }
 
-eWinner Board::get_winner() {
+eWinner Board::calculate_winner() {
     std::map<eCell, std::map<int16_t, uint16_t>> zones;
     const std::vector<std::pair<int16_t, int16_t>> sides
             { { -1, 0 }, { -1, -1 }, { 0, -1 }, { 1, -1 } };
