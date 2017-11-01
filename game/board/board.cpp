@@ -13,6 +13,8 @@ bool Board::do_turn(int16_t x, int16_t y) {
     if (y < 0 || y >= size) return false;
     if (this->next_type == eCell::Empty)
         return false;
+    if (data[y * size + x] != eCell::Empty)
+        return false;
 
     // Places X/O on specified cell
     data[y * size + x] = this->next_type;
