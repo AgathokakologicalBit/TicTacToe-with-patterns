@@ -1,3 +1,5 @@
+// Copyright 2017 Ermishin Michael
+
 #include "board_printer.h"
 
 std::ostream& operator <<(std::ostream& out, const BoardPrinter& p)

@@ -1,3 +1,5 @@
+// Copyright 2017 Ermishin Michael
+
 #include <algorithm>
 #include <map>
 #include <vector>

@@ -1,3 +1,5 @@
+// Copyright 2017 Ermishin Michael
+
 #include <iostream>
 
 #include "board.h"
