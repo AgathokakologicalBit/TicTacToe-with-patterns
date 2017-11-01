@@ -1,0 +1,7 @@
+# Build & idea files/folders
+.idea/*
+cmake*
+
+# System & temporary files
+*.swp
+*~
