@@ -4,6 +4,7 @@
 
 #include "game.h"
 #include "board/board_printer_factory.h"
+#include "../controllers/user_controller.h"
 
 void Game::init()
 {
@@ -23,16 +24,19 @@ void Game::init()
             .set_symbol(eCell::O, '1')
             .set_symbol(eCell::Empty, '.')
             .build());
+
+    _player1 = std::make_unique<UserController>();
+    _player2 = std::make_unique<UserController>();
 }
 
 bool Game::update()
 {
     if (_winner != eWinner::NA) return false;
 
-    uint16_t x, y;
-    std::cout << "Place " << _printer->get_symbol(_board->get_current_player()) << " on (x y): ";
-    std::cin >> x >> y;
-    _board->do_turn(x, y);
+    auto player = _board->get_current_player();
+    auto controller = player == eCell::X ? _player1.get() : _player2.get();
+    auto move = controller->do_turn(*_board);
+    _board->do_turn(move.x, move.y);
 
     _winner = _board->calculate_winner();
     return true;

@@ -6,6 +6,7 @@
 
 #include "board/board.h"
 #include "board/board_printer.h"
+#include "../controllers/controller.h"
 
 
 /**
@@ -35,11 +36,16 @@ private:
     std::unique_ptr<BoardPrinter> _printer;
     eWinner _winner;
 
+    std::unique_ptr<IController> _player1;
+    std::unique_ptr<IController> _player2;
+
 private:
     Game()
         : _board(nullptr)
         , _printer(nullptr)
         , _winner(eWinner::NA)
+        , _player1(nullptr)
+        , _player2(nullptr)
     {}
 
     ~Game() = default;
@@ -74,4 +80,14 @@ public:
      * @return printable character
      */
     const char winner_symbol() { return _printer->get_symbol(_winner == eWinner::X ? eCell::X : eCell::O); }
+
+    /**
+     * @return Currently going player
+     */
+    const eCell current() { return _board->get_current_player(); }
+
+    /**
+     * @return Currently going player's symbol
+     */
+    const char current_symbol() { return _printer->get_symbol(current()); }
 };

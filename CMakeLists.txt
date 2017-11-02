@@ -15,5 +15,7 @@ set(SOURCE_FILES
         controllers/controller.h
         game/move.h
         game/game.cpp
-        game/game.h)
+        game/game.h
+        controllers/user_controller.cpp
+        controllers/user_controller.h)
 add_executable(ttt ${SOURCE_FILES})
