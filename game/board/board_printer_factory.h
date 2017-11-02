@@ -24,7 +24,7 @@ public:
      * @param board_ target board to print
      */
     explicit BoardPrinterFactory(const Board& board_)
-        : printer(new BoardPrinter(&board_))
+        : printer(std::make_unique<BoardPrinter>(&board_))
         , is_built(false)
     {}
 
@@ -51,8 +51,6 @@ public:
         assert(!is_built);
 
         is_built = true;
-        auto p = printer.get();
-        printer.release();
-        return p;
+        return printer.release();
     }
 };

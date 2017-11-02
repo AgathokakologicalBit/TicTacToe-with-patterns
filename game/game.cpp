@@ -1,15 +1,11 @@
 // Copyright 2017 Ermishin Michael
 
-#include "game.h"
 #include "board/board_printer_factory.h"
-#include "../controllers/user_controller.h"
-#include "../input/input_manager.h"
+#include "game.h"
 
 
 void Game::init()
 {
-    input = InputManager::get().console();
-
     input->writeln("Tic tac tie YxY. Score Z to win!");
 
     input->write("Please specify Y: ");
@@ -26,9 +22,6 @@ void Game::init()
             .set_symbol(eCell::O, '1')
             .set_symbol(eCell::Empty, '.')
             .build());
-
-    _player1 = std::make_unique<UserController>();
-    _player2 = std::make_unique<UserController>();
 }
 
 bool Game::update()

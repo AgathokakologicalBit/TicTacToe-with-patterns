@@ -9,6 +9,8 @@
 #include "../controllers/controller.h"
 
 #include "../input/console.cpp"
+#include "../controllers/user_controller.h"
+#include "../input/input_manager.h"
 
 
 /**
@@ -45,12 +47,12 @@ private:
 
 private:
     Game()
-        : _board(nullptr)
-        , _printer(nullptr)
+        : _board()
+        , _printer()
         , _winner(eWinner::NA)
-        , input(nullptr)
-        , _player1(nullptr)
-        , _player2(nullptr)
+        , input(InputManager::get().console())
+        , _player1(std::make_unique<UserController>())
+        , _player2(std::make_unique<UserController>())
     {}
 
     ~Game() = default;

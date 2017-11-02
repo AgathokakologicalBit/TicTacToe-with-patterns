@@ -19,6 +19,8 @@ private:
         : _console(new Console)
     {}
 
+    ~InputManager() = default;
+
 public:
     static InputManager& get();
 
