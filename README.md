@@ -2,6 +2,7 @@
 
 Simple game implementation using common programming patters.
 
+
 ## Used design patterns
 
 * Builder - for creating `Board` printers with custom settings
@@ -10,6 +11,13 @@ Simple game implementation using common programming patters.
 * RAII - `Board` manages dynamic memory for storing cells and frees it on destruction
 * Singleton - `Game` have a sole instance which runs TicTacToe
 * ... - more will be implemented soon
+
+
+## Screenshots
+
+![Game in progress](https://www.dropbox.com/s/qberq0ybk81vqsm/field_placment_25_5.png?raw=1)
+![Game finished](https://www.dropbox.com/s/xpl3612o6ssrs77/field_win_25_5.png?raw=1)
+
 
 ## Do you have a good idea?
 
