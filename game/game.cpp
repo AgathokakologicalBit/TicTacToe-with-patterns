@@ -1,21 +1,23 @@
 // Copyright 2017 Ermishin Michael
 
-#include <iostream>
-
 #include "game.h"
 #include "board/board_printer_factory.h"
 #include "../controllers/user_controller.h"
+#include "../input/input_manager.h"
+
 
 void Game::init()
 {
-    uint16_t size, target_score;
-    std::cout << "Tic tac tie YxY. Score Z to win!" << std::endl;
+    input = InputManager::get().console();
 
-    std::cout << "Please specify Y: ";
-    std::cin >> size;
+    input->writeln("Tic tac tie YxY. Score Z to win!");
 
-    std::cout << "Please specify Z: ";
-    std::cin >> target_score;
+    input->write("Please specify Y: ");
+    auto size = input->read<uint16_t>();
+
+    input->write("Please specify Z: ");
+    auto target_score = input->read<uint16_t>();
+
 
     _board = std::make_unique<Board>(size, target_score);
     auto builder = std::make_unique<BoardPrinterFactory>(*_board);
@@ -44,6 +46,8 @@ bool Game::update()
 
 void Game::render()
 {
-    system("clear");
-    std::cout << *_printer << "\n\n";
+    input->clear();
+
+    input->write(*_printer);
+    input->write("\n\n");
 }

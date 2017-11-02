@@ -14,8 +14,15 @@ set(SOURCE_FILES
         game/board/board_printer_factory.h
         controllers/controller.h
         game/move.h
+        controllers/user_controller.cpp
+        controllers/user_controller.h
+        input/console.h
+        input/linux/console.cpp
+        input/windows/console.cpp
+        input/console.cpp
+        input/input_manager.cpp
+        input/input_manager.h
         game/game.cpp
         game/game.h
-        controllers/user_controller.cpp
-        controllers/user_controller.h)
+)
 add_executable(ttt ${SOURCE_FILES})

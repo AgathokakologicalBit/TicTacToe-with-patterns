@@ -8,6 +8,8 @@
 #include "board/board_printer.h"
 #include "../controllers/controller.h"
 
+#include "../input/console.cpp"
+
 
 /**
  * [Singleton] 'Tic Tac Toe' game manager
@@ -36,6 +38,8 @@ private:
     std::unique_ptr<BoardPrinter> _printer;
     eWinner _winner;
 
+    Console* input;
+
     std::unique_ptr<IController> _player1;
     std::unique_ptr<IController> _player2;
 
@@ -44,6 +48,7 @@ private:
         : _board(nullptr)
         , _printer(nullptr)
         , _winner(eWinner::NA)
+        , input(nullptr)
         , _player1(nullptr)
         , _player2(nullptr)
     {}
